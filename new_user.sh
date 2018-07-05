@@ -11,9 +11,11 @@ echo "KEY =  $KEY"
 
 # ADD USER
 sudo adduser $USERNAME
-sudo mkdir -p /home/$USERNAME/.ssh
 sudo echo /home/$USERNAME
 
+# CREATE sSSH DIR / FILES
+sudo mkdir -p /home/$USERNAME/.ssh
+sudo touch /home/$USERNAME/.ssh/authorized_keys
 
 # SET PERMISSIONS
 sudo usermod -aG sudo $USERNAME
@@ -23,6 +25,4 @@ sudo chmod 700 /home/$USERNAME/.ssh
 sudo chmod 644 /home/$USERNAME/.ssh/authorized_keys
 
 # ADD KEY TO AUTHORIZED KEYS
-sudo touch /home/$USERNAME/.ssh/authorized_keys
 sudo sed "1 a  ${KEY}" /home/$USERNAME/.ssh/authorized_keys
-sudo usermod --shell /bin/bash $USERNAME
